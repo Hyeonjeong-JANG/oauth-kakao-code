@@ -28,7 +28,7 @@ import java.sql.Timestamp;
 public class UserResponse {
 
     @Data // getter, setter
-    public static class TokenDTO {
+    public static class KakaoTokenDTO {
         @JsonProperty("access_token")
         private String accessToken;
         @JsonProperty("token_type")
@@ -47,10 +47,10 @@ public class UserResponse {
         private Long id;
         @JsonProperty("connected_at")
         private Timestamp connectedAt;
-        private Properties properties;
+        private KakaoProperties kakaoProperties;
 
         @Data
-        class Properties {
+        class KakaoProperties {
             private String nickname;
         }
     }
@@ -74,10 +74,10 @@ public class UserResponse {
     public static class NaverUserDTO {
         private String resultCode;
         private String message;
-        private Response response;
+        private NaverProperties naverProperties;
 
         @Data
-        class Response {
+        class NaverProperties {
             private String id;
             private String email;
         }

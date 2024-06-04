@@ -64,11 +64,11 @@ public class UserService {
                 new HttpEntity<>(body, headers);
 
         // 1.5 api 요청하기 (토큰 받기)
-        ResponseEntity<UserResponse.TokenDTO> response = rt.exchange(
+        ResponseEntity<UserResponse.KakaoTokenDTO> response = rt.exchange(
                 "https://kauth.kakao.com/oauth/token",
                 HttpMethod.POST,
                 request,
-                UserResponse.TokenDTO.class);
+                UserResponse.KakaoTokenDTO.class);
 
         // 1.6 값 확인
         System.out.println(response.getBody().toString());
@@ -107,7 +107,7 @@ public class UserService {
             User user = User.builder()
                     .username(username)
                     .password(UUID.randomUUID().toString())
-                    .email(response2.getBody().getProperties().getNickname() + "@nate.com")
+                    .email(response2.getBody().getKakaoProperties().getNickname() + "@nate.com")
                     .oauthProvider(OauthProvider.KAKAO)
                     .build();
             User returnUser = userRepository.save(user);
@@ -168,7 +168,7 @@ public class UserService {
         System.out.println("response2 : " + response2.getBody().toString());
 
         // 3. 해당정보로 DB조회 (있을수, 없을수)
-        String username = "naver_" + response2.getBody().getResponse().getId();
+        String username = "naver_" + response2.getBody().getNaverProperties().getId();
         User userPS = userRepository.findByUsername(username);
 
         // 4. 있으면? - 조회된 유저정보 리턴
@@ -185,7 +185,7 @@ public class UserService {
             User user = User.builder()
                     .username(username)
                     .password(UUID.randomUUID().toString())
-                    .email(response2.getBody().getResponse().getEmail())
+                    .email(response2.getBody().getNaverProperties().getEmail())
                     .oauthProvider(OauthProvider.NAVER)
                     .build();
             User returnUser = userRepository.save(user);
