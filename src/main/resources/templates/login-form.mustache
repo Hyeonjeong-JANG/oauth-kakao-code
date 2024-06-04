@@ -2,16 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <style>
+        .quick-login-btns {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .quick-login-btns > div {
+            width: 140px;
+            height: 32px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .quick-login-btns > div:first-child {
+            margin-right: 10px;
+        }
+
+        .quick-login-btns > div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #naver_id_login a img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>로그인 페이지</h1>
-    <hr>
-    <form action="/login" method="post">
-        <input type="text" placeholder="유저네임" value="ssar" name="username"> <br>
-        <input type="password" placeholder="비밀번호" value="1234" name="password"> <br>
-        <button type="submit">로그인</button>
-    </form>
-    <a href="https://kauth.kakao.com/oauth/authorize?redirect_uri=http://localhost:8080/oauth/callback&response_type=code&client_id=f00bd4f8c9f911e1f0e602eda55bbd52">카카오 로그인</a>
+<h1>로그인 페이지</h1>
+<hr>
+<form action="/login" method="post">
+    <input type="text" placeholder="유저네임" value="ssar" name="username"> <br>
+    <input type="password" placeholder="비밀번호" value="1234" name="password"> <br>
+    <button type="submit">로그인</button>
+</form>
+<div class="quick-login-btns">
+    <div>
+        <a href="https://kauth.kakao.com/oauth/authorize?redirect_uri=http://localhost:8080/oauth/kakao-callback&response_type=code&client_id=f00bd4f8c9f911e1f0e602eda55bbd52">
+            <img src="/images/kakao_login_button.png" alt="Kakao Login Button">
+        </a>
+    </div>
+    <div>
+        <a href="/oauth/naver/code-request">
+            <img src="/images/naver_login_button.png" alt="Naver Login Button">
+        </a>
+    </div>
+</div>
 </body>
 </html>

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import shop.mtcoding.loginapp._core.OauthProvider;
 
 @NoArgsConstructor
 @Getter
@@ -18,16 +19,16 @@ public class User {
     private String password;
     private String email;
     private String address; // 상품 구매시 받기
-    private String provider; // facebook, kakao, apple, naver
+    private OauthProvider oauthProvider; // facebook, kakao, apple, naver
 
     @Builder
-    public User(Integer id, String username, String password, String email, String address, String provider) {
+    public User(Integer id, String username, String password, String email, String address, OauthProvider oauthProvider) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
-        this.provider = provider;
+        this.oauthProvider = oauthProvider;
     }
 }
 
